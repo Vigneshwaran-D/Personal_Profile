@@ -1,6 +1,6 @@
 # Vigneshwaran D - Digital Transformation Manager
 
-![Profile Image](https://avatars.githubusercontent.com/u/123456?v=4)
+![Profile Image](https://raw.githubusercontent.com/Vigneshwaran-D/Personal_Profile/main/Vigneshwaran.D.jpg)
 
 ## About Me
 
