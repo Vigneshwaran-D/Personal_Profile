@@ -1,96 +1,69 @@
-# Vigneshwaran D - Digital Transformation Manager
+# Personal Profile (React SSR)
 
-<img src="https://raw.githubusercontent.com/Vigneshwaran-D/Personal_Profile/main/Vigneshwaran.D.jpg" alt="Profile Image" width="200" height="241">
+This repo contains **Vigneshwaran D’s** portfolio migrated to **React SSR** using **Next.js** (TypeScript-enabled, with JS allowed).
 
-## About Me
+## Tech stack
 
-I am an experienced Manager with over 8 years in process engineering solutions, specializing in Hyperautomation, Chatbots, and RPA. For the past 2 years, I have focused on Large Language Model (LLM) projects and Retrieval-Augmented Generation (RAG) technologies. I am seeking a challenging role to leverage my expertise in AI innovation and drive business growth.
+- **SSR framework**: Next.js (App Router)
+- **UI**: React + your existing CSS theme (served from `public/css`)
+- **Animations / UI effects**:
+  - `swiper` (hero carousel)
+  - `aos` (scroll animations)
+  - `react-countup` (counters)
+- **Contact form backend**: Next API route `POST /api/contact` (SMTP via `nodemailer`)
 
-## Work Experience
+## Prerequisites
 
-### Manager - Digital Assistant
-**Pepsico, Hyderabad, IND (Oct 2023 – Present)**
+- **Node.js**: 20+
+- **npm**: comes with Node
 
-- Developed advanced Generative AI solutions leveraging LLM, RAG, LangChain, and LamaIndex.
-- Created conversational AI interfaces to enhance user engagement and satisfaction.
-- Solution Architecture for complex AI and conversational solutions.
-- Delivered 3 production-ready projects and 10 proof-of-concept (POC) projects using Generative AI and RAG.
-- Managed Conversation AI Chatbot projects across multiple departments.
+## Local development
 
-### Data Science Manager
-**Foundever, Chennai, IND (Oct 2020 – Sep 2023)**
+1. Install dependencies:
 
-- Developed Chatbot solutions using AWS Lex and Power Virtual Agent.
-- Managed the UiPath RPA development team.
-- Implemented a Hyperautomation solution using Chatbot and UiPath, saving $150,000 annually.
-- Developed an RPA orchestrator using Python and AWS services.
-- Created an interactive dashboard in Power BI using DAX.
-- Designed and developed over 40 RPA solutions, resulting in significant productivity gains.
+```bash
+npm install
+```
 
-## Skills
+2. Create environment file:
 
-**Soft Skills:**
-- Project Management
-- Solution Architecture
-- Digital Transformation
-- Opportunity Identification
-- Cost Controls
-- Collaboration
+```bash
+copy .env.example .env.local
+```
 
-**Hard Skills:**
-- Generative AI (LangChain, LlamaIndex, RAG)
-- Conversational AI (OneReach, Dialogflow CX, AWS Lex, Power Virtual Agent)
-- Cloud Solutions (AWS, Azure)
-- RPA (UiPath, Power Automation, WinAutomation, Automation Anywhere, Blue Prism)
-- BI Tools (Power BI)
-- UI/UX (Figma)
-- Programming (Python, VBA, AHK)
-- Databases (DynamoDB, SQL)
+3. Update `.env.local` with your SMTP credentials.
 
-## Certifications
+4. Run dev server:
 
-- LangChain - LLM Powered application with Langchain
-- Microsoft Azure Cognitive Services
-- AWS Solutions Architect – Professional
-- Azure Architect Design Certification Prep
-- UiPath Level 2 - Orchestrator 2018.3 Certification
-- RPA Solution Architecture Fundamentals
-- Virtual Agent Development in Dialogflow CX for Software Dev
-- Figma UI UX Design
-- Six Sigma White Belt
+```bash
+npm run dev
+```
 
-## Education
+## Production build
 
-- BCA - Sathyabama University - 2011
-- Higher Secondary – KRMS – 2008
+```bash
+npm install
+npm run build
+npm run start
+```
 
-## Projects
+The server listens on port `3000` by default.
 
-### BI Chatbot Using LLM and RAG for SQL Data Retrieval and Predictive Analytics
+## Deployment (own server)
 
-- Achieved a $900K cost saving by reducing the number of analysts required to manage research data from 40 to 16.
-- Developed a comprehensive data pipeline for efficient document processing.
-- Integrated Azure Document Intelligence for OCR and vectorization.
-- Designed a user-friendly web application for accessing and reviewing summarized data.
-- Implemented a Reinforcement Learning with Human Feedback (RLHF) mechanism for model retraining.
+### Option A: PM2 / systemd (simple)
 
-### Admin Chatbot – AWS Lex
+- Build once: `npm ci && npm run build`
+- Run: `npm run start` under a process manager (PM2/systemd) and put it behind Nginx/Caddy as a reverse proxy.
 
-- Developed a Hyper Automation solution for the CallMiner Admin Team.
-- Created a chatbot solution to handle administrative requests, reducing the admin team headcount from 10 to 2 FTEs.
+### Option B: Docker
 
-## Contact
+This repo includes a `Dockerfile` + `docker-compose.yml`. Set environment variables (or mount an env file) and run:
 
-- **Location:** Chennai, Tamil Nadu
-- **Phone:** +91-7200217424
-- **Email:** vignesh_dd@aol.com
-- **LinkedIn:** [Vigneshwaran Dhanasekaran](https://www.linkedin.com/in/vigneshwaran-dhanasekaran/)
-- **Portfolio:** [Personal Profile](https://vigneshwaran-d.github.io/Personal_Profile/)
+```bash
+docker compose up --build
+```
 
-## Declaration
+## Notes
 
-I, Vigneshwaran D, hereby declare that the information contained herein is true and correct to the best of my knowledge and belief.
-
-Regards,  
-Vigneshwaran. D  
-Chennai, Tamil Nadu
+- Legacy files like `index.html`, `single.html`, and `send_email.php` are now **not used** by the Next.js app (they’re kept for reference).

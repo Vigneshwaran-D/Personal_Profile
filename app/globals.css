@@ -1,0 +1,28 @@
+:root {
+  --background: #ffffff;
+  --foreground: #0f172a;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  margin: 0;
+  color: var(--foreground);
+  background: var(--background);
+}
+
+.js-fullheight {
+  min-height: 100vh;
+}
+
+.hero {
+  position: relative;
+}
+
+.hero .home-slider,
+.hero .slider-item {
+  min-height: 100vh;
+}
+

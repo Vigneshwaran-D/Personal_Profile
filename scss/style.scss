@@ -10,6 +10,11 @@ $darken: #232931;
 $primary: #ffbd39;
 $secondary: #a0f669;
 
+$glass-bg: rgba(255, 255, 255, 0.1);
+$glass-border: rgba(255, 255, 255, 0.2);
+$glass-blur: 10px;
+$gradient-primary: linear-gradient(45deg, $primary, $secondary);
+
 
 
 @mixin border-radius($radius) {
@@ -25,6 +30,51 @@ $secondary: #a0f669;
     -webkit-transition: all $transition ease;
     -ms-transition: 		all $transition ease;
     transition:         all $transition ease;
+}
+
+@mixin glassmorphism {
+  background: $glass-bg;
+  backdrop-filter: blur($glass-blur);
+  border: 1px solid $glass-border;
+  @include border-radius(10px);
+}
+
+@keyframes gradientShift {
+  0% { background-position: 0% 50%; }
+  50% { background-position: 100% 50%; }
+  100% { background-position: 0% 50%; }
+}
+
+.animated-gradient {
+  background: $gradient-primary;
+  background-size: 200% 200%;
+  animation: gradientShift 3s ease infinite;
+}
+
+.glass-card {
+  @include glassmorphism;
+  padding: 2rem;
+  margin: 1rem;
+  
+  .text {
+    backdrop-filter: none;
+    background: none;
+    border: none;
+    
+    .subheading {
+      color: rgba(255, 255, 255, 0.8);
+      font-weight: 500;
+    }
+    
+    h1, h2 {
+      color: white;
+      text-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
+      
+      span {
+        font-weight: 700;
+      }
+    }
+  }
 }
 
 html {
