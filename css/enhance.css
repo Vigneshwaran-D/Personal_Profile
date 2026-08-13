@@ -150,6 +150,7 @@ body {
 .ftco_navbar {
   transition: all 0.35s ease;
   background: transparent;
+  z-index: 1000; /* keep header above hero content so nav/theme toggle stays clickable */
 }
 .ftco_navbar .navbar-brand { font-weight: 700; letter-spacing: 0.5px; }
 .ftco_navbar .navbar-brand span { color: var(--orange); }
@@ -164,6 +165,13 @@ body {
 [data-theme="dark"] .ftco_navbar.scrolled.awake .navbar-brand { color: #fff; }
 [data-theme="dark"] .ftco_navbar.scrolled.awake .navbar-toggler,
 [data-theme="dark"] .ftco_navbar.scrolled.awake .navbar-toggler .oi { color: #fff !important; }
+
+/* light theme: once the navbar gets its white background, brand/links must turn dark to stay visible */
+[data-theme="light"] .ftco_navbar.scrolled.awake .navbar-brand { color: var(--ink) !important; }
+[data-theme="light"] .ftco_navbar.scrolled.awake .nav-link { color: var(--ink) !important; }
+[data-theme="light"] .ftco_navbar.scrolled.awake .navbar-toggler,
+[data-theme="light"] .ftco_navbar.scrolled.awake .navbar-toggler .oi { color: var(--ink) !important; }
+[data-theme="light"] .ftco_navbar.scrolled.awake .navbar-brand span { color: var(--orange) !important; }
 
 .ftco_navbar .nav-link {
   position: relative;
