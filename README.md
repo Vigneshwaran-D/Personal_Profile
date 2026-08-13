@@ -83,7 +83,7 @@ I am an experienced Manager with over 8 years in process engineering solutions, 
 
 - **Location:** Chennai, Tamil Nadu
 - **Phone:** +91-7200217424
-- **Email:** vignesh_dd@aol.com
+- **Email:** vigneshwaran.d.work@gmail.com
 - **LinkedIn:** [Vigneshwaran Dhanasekaran](https://www.linkedin.com/in/vigneshwaran-dhanasekaran/)
 - **Portfolio:** [Personal Profile](https://vigneshwaran-d.github.io/Personal_Profile/)
 
