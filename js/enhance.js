@@ -173,7 +173,8 @@
     track.innerHTML += track.innerHTML;
   });
 
-  /* ---------- 8. Contact form (PHP first, mailto fallback) ---------- */
+  /* ---------- 8. Contact form (Formspree first, mailto fallback) ---------- */
+  var FORMSPREE_ID = "mzepvryy";
   var form = document.getElementById("contactForm");
   if (form) {
     var msg = document.getElementById("form-msg");
@@ -213,20 +214,32 @@
           "&body=" + encodeURIComponent(body);
         window.location.href = mailto;
         if (submitBtn) { submitBtn.disabled = false; submitBtn.value = original; }
-        showMsg(false, errMsg || "Direct sending failed. Your email app should open — please press send there, or reach me at vigneshwaran.d.work@gmail.com.");
+        showMsg(false, errMsg || "Formspree couldn't be reached. Your email app should open — please press send there, or reach me at vigneshwaran.d.work@gmail.com.");
       };
 
-      /* 1) OneDrive/static hosting: PHP likely unavailable -> try it, fallback to mailto. */
-      try {
-        var fd = new FormData(form);
-        fetch("send_email.php", { method: "POST", body: fd })
+      /* 1) Formspree (works on static hosting). PHP is not available on GitHub Pages.
+         Replace FORMSPREE_ID with your form's ID from https://formspree.io. */
+      if (!FORMSPREE_ID || FORMSPREE_ID.indexOf("YOUR_") === 0) {
+        fallback();
+      } else {
+        fetch("https://formspree.io/f/" + FORMSPREE_ID, {
+          method: "POST",
+          headers: { "Accept": "application/json" },
+          body: JSON.stringify({
+            _subject: subject || "Contact from website",
+            name: name,
+            _replyto: email,
+            email: email,
+            message: message
+          })
+        })
           .then(function (res) {
             if (!res.ok) throw new Error("http " + res.status);
-            return res.text();
+            return res.json();
           })
-          .then(function (text) {
+          .then(function (data) {
             if (submitBtn) { submitBtn.disabled = false; submitBtn.value = original; }
-            if (/success|ok/i.test(text)) {
+            if (data && data.ok) {
               showMsg(true, "Message sent successfully! I'll get back to you soon.");
               form.reset();
             } else {
@@ -234,8 +247,6 @@
             }
           })
           .catch(function () { fallback(); });
-      } catch (e) {
-        fallback();
       }
     });
   }
