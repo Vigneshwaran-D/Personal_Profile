@@ -4,11 +4,11 @@
 (function () {
   "use strict";
 
-  /* ---------- 0. Theme toggle (light / dark, default dark) ---------- */
+  /* ---------- 0. Theme toggle (light / dark, default light) ---------- */
   var root = document.documentElement;
   var saved;
   try { saved = localStorage.getItem("vd-theme"); } catch (e) {}
-  var theme = saved === "light" || saved === "dark" ? saved : "dark";
+  var theme = saved === "light" || saved === "dark" ? saved : "light";
   root.setAttribute("data-theme", theme);
   var themeBtn = document.getElementById("theme-toggle");
   if (themeBtn) {

@@ -7,9 +7,9 @@
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 
     <script>
-      /* Apply theme before CSS paints to avoid flash (default: dark) */
+      /* Apply theme before CSS paints to avoid flash (default: light) */
       (function () {
-        var t = 'dark';
+        var t = 'light';
         try { var s = localStorage.getItem('vd-theme'); if (s === 'light' || s === 'dark') t = s; } catch (e) {}
         document.documentElement.setAttribute('data-theme', t);
       })();
