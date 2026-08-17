@@ -149,6 +149,52 @@
     });
   }
 
+  /* ---------- 5b. Open architecture diagram in overlay lightbox ---------- */
+  var archPopup = document.createElement("div");
+  archPopup.className = "arch-popup";
+  archPopup.setAttribute("role", "dialog");
+  archPopup.setAttribute("aria-label", "Architecture Diagram");
+  archPopup.innerHTML = '<button type="button" class="arch-popup-close" aria-label="Close">&times;</button><img class="arch-popup-img" alt="Architecture Diagram">';
+  document.body.appendChild(archPopup);
+  var archImg = archPopup.querySelector(".arch-popup-img");
+  var archClose = archPopup.querySelector(".arch-popup-close");
+
+  function openArch(src) {
+    archImg.setAttribute("src", src);
+    archPopup.classList.add("open");
+    document.body.style.overflow = "hidden";
+  }
+  function closeArch() {
+    archPopup.classList.remove("open");
+    document.body.style.overflow = "";
+    archImg.removeAttribute("src");
+  }
+  archClose.addEventListener("click", closeArch);
+  archPopup.addEventListener("click", function (e) {
+    if (e.target === archPopup) closeArch();
+  });
+  document.addEventListener("keydown", function (e) {
+    if (e.key === "Escape") closeArch();
+  });
+
+  document.querySelectorAll(".project").forEach(function (card) {
+    var img = card.getAttribute("data-img");
+    var link = card.querySelector("h3 a.image-arch-popup");
+    if (img) {
+      card.style.cursor = "pointer";
+      card.addEventListener("click", function (e) {
+        if (e.target && e.target.tagName === "A") return;
+        openArch(card.getAttribute("data-img"));
+      });
+    }
+    if (link) {
+      link.addEventListener("click", function (e) {
+        e.preventDefault();
+        openArch(this.getAttribute("href"));
+      });
+    }
+  });
+
   /* ---------- 6. Reveal on scroll (IntersectionObserver) ---------- */
   var revealEls = document.querySelectorAll(".reveal");
   if ("IntersectionObserver" in window && revealEls.length) {
