@@ -345,6 +345,9 @@ body {
   display: flex; align-items: center; gap: 10px;
   animation: floaty 5s ease-in-out infinite;
 }
+[data-theme="dark"] .hero-badge {
+  color: #ffffff;
+}
 .hero-badge .dot {
   width: 10px; height: 10px; border-radius: 50%;
   background: var(--gold);
@@ -549,8 +552,16 @@ body {
   background: linear-gradient(180deg, transparent, var(--gold) 8%, var(--orange) 92%, transparent);
   opacity: 0.45; border-radius: 3px;
 }
-.timeline-item { position: relative; width: 50%; padding: 0 48px 52px 0; }
-.timeline-item:nth-child(even) { padding: 0 0 52px 48px; }
+.timeline-item { 
+  position: relative; 
+  width: 50%; 
+  padding: 0 52px 68px 0; 
+  margin-bottom: 12px;
+}
+.timeline-item:nth-child(even) { 
+  padding: 0 0 68px 52px; 
+  margin-left: auto;
+}
 .timeline-item .tl-dot {
   position: absolute; top: 8px; right: -22px;
   width: 44px; height: 44px; border-radius: 50%;
@@ -626,6 +637,7 @@ body {
 /* ---------- Skills ---------- */
 .progress-wrap h3 { display: flex; justify-content: space-between; align-items: center; color: var(--text); }
 .progress-wrap h3 .pct { color: var(--orange); font-weight: 700; }
+.progress-wrap h3 .pct::after { content: "%"; }
 .progress {
   height: 12px !important;
   background: var(--track) !important;
@@ -643,7 +655,7 @@ body {
   0% { background-position: 0% 0; }
   100% { background-position: -200% 0; }
 }
-.progress-bar span { color: #fff !important; font-weight: 600 !important; }
+.progress-bar span { display: none !important; }
 
 /* tech marquee */
 .tech-cloud { margin-top: 50px; }
@@ -976,7 +988,7 @@ body {
 /* ---------- Viki chat widget ---------- */
 .cw-root { font-family: inherit; }
 .cw-launcher {
-  display: none;
+  display: none !important;
   position: fixed;
   right: 24px; bottom: 24px;
   width: 60px; height: 60px;
@@ -985,7 +997,7 @@ body {
   color: #fff;
   font-size: 26px;
   cursor: pointer;
-  display: flex; align-items: center; justify-content: center;
+  align-items: center; justify-content: center;
   box-shadow: 0 12px 34px rgba(249, 109, 0, 0.45);
   z-index: 950;
   transition: transform 0.3s cubic-bezier(0.22, 1, 0.36, 1), box-shadow 0.3s ease;
